@@ -1,3 +1,3 @@
 saludar=function(){
-    console.log("ingresar saludar")
+    console.log("ingresar saludar");
 }
