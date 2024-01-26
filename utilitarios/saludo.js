@@ -7,7 +7,20 @@ recuperarTexto=function(idComponente){
 }
 saludar=function(){
     let recu;
-    recu=recuperarTexto("txtNombre")
+    recu=recuperarTexto("txtNombre");
     let ape;
-    ape=recuperarTexto("txtApellido")
+    ape=recuperarTexto("txtApellido");
+    let edad=recuperarInt("txtEdad");
+    let estatura=recuperarFloat("txtEstatura");
+}
+recuperarInt=function(idComponente){
+    let valorCaja = recuperarTexto(idComponente);
+    let valorEntero = parseInt(valorCaja);
+    return valorEntero
+}
+
+recuperarFloat=function(idComponente){
+    let valorCaja = recuperarTexto(idComponente);
+    let valorFlotante = parseFloat(valorCaja);
+    return valorFlotante
 }
