@@ -17,6 +17,7 @@ saludar=function(){
     mostarTexto("idResultado",mensajeBienvenidO);
 
     mostarImagen("imgSaludo", "./imageness/anime-gif-6.gif");
+    mostarTextoEnCaja("txtNombre"," ")
 }
 recuperarInt=function(idComponente){
     let valorCaja = recuperarTexto(idComponente);
@@ -38,4 +39,8 @@ mostarImagen=function(idComponente,rutaImagen){
     let componente;
     componente = document.getElementById(idComponente);
     componente.src=rutaImagen;
+}
+mostarTextoEnCaja = function(idComponente,mensaje){
+    let valorCaja =  document.getElementById(idComponente);
+    valorCaja.value=mensaje;
 }
