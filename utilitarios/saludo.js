@@ -15,12 +15,15 @@ saludar=function(){
 
     let mensajeBienvenidO ="Bienvenido "+recu+" "+ape;
     mostarTexto("idResultado",mensajeBienvenidO);
+
+    mostarImagen("imgSaludo", "./imageness/anime-gif-6.gif");
 }
 recuperarInt=function(idComponente){
     let valorCaja = recuperarTexto(idComponente);
     let valorEntero = parseInt(valorCaja);
     return valorEntero
 }
+
 
 recuperarFloat=function(idComponente){
     let valorCaja = recuperarTexto(idComponente);
@@ -30,4 +33,9 @@ recuperarFloat=function(idComponente){
 mostarTexto=function(idComponente,mensaje) {
     let valorCaja =  document.getElementById(idComponente);
     valorCaja.innerText=mensaje
+}
+mostarImagen=function(idComponente,rutaImagen){
+    let componente;
+    componente = document.getElementById(idComponente);
+    componente.src=rutaImagen;
 }
