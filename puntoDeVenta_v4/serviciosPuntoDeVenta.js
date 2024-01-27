@@ -5,11 +5,9 @@ calcularValorDescuento=function(monto,porcentajeDescuento){
 }
 
 calcularIVA=function(monto){
-    let precioConIva;
     let iva;
     iva = monto*0.12;
-    precioConIva=monto+ iva;
-    return precioConIva;
+    return iva;
 }
 
 calcularSubtotal=function(precio,cantidad){

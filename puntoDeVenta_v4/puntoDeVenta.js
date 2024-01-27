@@ -28,7 +28,7 @@ calcularValorTotal = function(){
             Si el caso de prueba es exitoso, hacer un commit
          */
     //6. Invocar a calcularDescuento y lo que devuelve guardar en la variable valorDescuento
-    valorDescuento=calcularValorDescuento(precioProducto,porcentajeDescuento)
+    valorDescuento=calcularValorDescuento(valorSubtotal,porcentajeDescuento)
     //7. Mostrar el resultado en el componente lblDescuento
     mostrarTexto("lblDescuento",valorDescuento);
         /*
@@ -38,8 +38,11 @@ calcularValorTotal = function(){
             Si el caso de prueba es exitoso, hacer un commit
          */
     //8. Invocar a calcularIVA y lo que devuelve guardar en la variable valorIVA
+    valorIVA=calcularIVA(precioProducto)
 	//   El IVA debe calcularse sobre el valor del subtotal menos el descuento
-    //9. Mostrar el resultado en el componente lblValorIVA    
+    let x= (valorSubtotal-valorDescuento)*0.12
+    //9. Mostrar el resultado en el componente lblValorIVA 
+    mostrarTexto("lblValorIVA",x )   
     /*
             Caso de prueba: 
                 precioProducto: 5.4  cantidad: 10 descuento: 10
