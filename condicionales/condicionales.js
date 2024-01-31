@@ -9,7 +9,7 @@ calcularTasaInteres = function(ingresoAnual){
     }else if (ingresoAnual>=500000 && ingresoAnual<1000000){
         calcularInteres = ingresoAnual*0.15;
         return calcularInteres;
-    }else if (ingresoAnual>=1000000 && 2000000){
+    }else if (ingresoAnual>=1000000 && ingresoAnual<2000000){
         calcularInteres = ingresoAnual*0.15;
         return calcularInteres;
     }else if(ingresoAnual>=2000000 ){
@@ -37,14 +37,14 @@ calcularDescuento = function(precio,cantidad){
     if(cantidad<3){
         return precio;
     }else if(cantidad>=3 && cantidad<=5){
-        let des = precio * 2 /100;
-        return des;
+        let cmpDescuento = precio * 2 /100;
+        return cmpDescuento;
     }else if(cantidad>=6 && cantidad<=11){
-        des = precio * 3 /100;
-        return des;
+        cmpDescuento = precio * 3 /100;
+        return cmpDescuento;
     }else if(cantidad>=12){
-        des = precio * 4 /100;
-        return des;
+        cmpDescuento = precio * 4 /100;
+        return cmpDescuento;
     }
 }
 determinarColesterolLDL=function(niverColesterol){
