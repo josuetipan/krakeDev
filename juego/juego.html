@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="juego.css">
+    <script src="servicioJuego.js"></script>
+    <script src="utilitarios.js"></script>
+    <script src="juego.js"></script>
+</head>
+<body>
+    <h1>PIEDRA PAPEL O TIJERA </h1>
+    <h3>Puntos usuario:</h3>
+    <h3 id="puntos"></h3>
+    <h3>Puntos computadora:</h3>
+    <h3 id="puntosCompu"></h3>
+    <h3>----------</h3>
+    <h3 id="ganador1"></h3>
+    <img src="./images/piedra.jpg" id="lblImagen1" width="300" />
+    <input type="button"  onclick="jugar('piedra')"/>    
+    <img src="./images/papel.jpg" id="lblImagen2" width="300"  />
+    <input type="button" onclick="jugar('papel')"/>       
+    <img src="./images/tijera.jpg" id="lblImagen3" width="300" />
+    <input type="button" onclick="jugar('tijera')"/>
+    <div>
+        <img src="" id="lblImagenComputador" width="300"/>
+    </div>
+    <h3>GANADOR:</h3>
+    <h3 id="ganador"></h3>
+    <input type="button" value="Limpiar" onclick="limpiar()"/>
+</body>
+</html>
