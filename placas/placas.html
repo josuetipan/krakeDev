@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="placas.js"></script>
+    <script src="serviciosPlacas.js"></script>
+    <script src="utilitarios.js"></script>
+    <script src="utilitariosCadenas.js"></script>
+    <link rel="stylesheet" href="placas.css">
+</head>
+<body>
+    <h3>INGRESE LA PLACA</h3>
+    <input type="text" class="cajaTexto" id="lblPlaca"/>
+    <input type="button" value="VALIDAR" class="estiloBoton" onclick="validarPlaca();"/>
+    <input type="button" value="LIMPIAR" class="estiloBoton" onclick="limpiar();"/>
+    <div class="contenido" >
+        <div class="ingresoDatos">
+            <div class="tituloCampo">
+
+                <h3>RESULTADO:</h3>
+            </div>
+            <div>
+                <h3 class="resultado" id="lblResultado"></h3>
+            </div>
+        </div>
+        <div class="ingresoDatos">
+            <div class="tituloCampo">
+                <h3>PROVINCIA:</h3>
+            </div>
+            <div>
+                <h3 class="resultado" id="lblProvincia"></h3>
+            </div>
+        </div>
+        <div class="ingresoDatos">
+            <div class="tituloCampo"> 
+                <h3>TIPO DE VEHICULO:</h3>
+            </div>
+            <div>
+                <h3 class="resultado" id="lblTipo"></h3>
+
+            </div>
+
+        </div>
+        <div class="ingresoDatos">
+            <div class="tituloCampo">
+                <h3>pico y placa:</h3>
+            </div>
+            <div>
+                <h3 class="resultado" id="lblPico"></h3>
+            </div>
+
+        </div>
+        <div class="ingresoDatos">
+            <div class="tituloCampo">
+                <h3>ERRORES:</h3>
+            </div>
+            <div>
+                <h3 class="error" id="lblMostrarResultado"></h3>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
