@@ -38,8 +38,7 @@ validarPassword = function(password){
         caracter=password.charAt(i);
         ascci2=password.charCodeAt(i);
         if(ascci2==45 || ascci2==95 || ascci2==42){
-            caraceterValido = true
-            
+            caraceterValido = true;
         }
     }
     if(!caraceterValido){
@@ -52,11 +51,11 @@ ejecutarValidacion=function(){
     let caja = recuperarTexto("lblText")
     let contraseña = validarPassword(caja);
     if(contraseña == true){
-        mostrarTexto("errores"," ");
+        mostrarTexto("erores"," ");
         mostrarTexto("erores1","password correcto");
         
     }else{
-        mostrarTexto("errores","");
+        
         mostrarTexto("erores1","password incorrecto");
     }
 }
