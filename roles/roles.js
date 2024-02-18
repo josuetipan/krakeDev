@@ -73,63 +73,9 @@ agregarEmpleado = function (empleado) {
         empleados.push(empleado);
         return true;
     } else {
-        alert("ya existe el clienete con la cedula : " + empleado.cedula);
+        alert("ya existe el empleado con la cedula : " + empleado.cedula);
         return false;
     }
-}
-
-guardar = function () {
-    let cedula = recuperarTexto("txtCedula");
-    let nombre = recuperarTexto("txtNombre");
-    let apellido = recuperarTexto("txtApellido");
-    let sueldo = recuperarFloat("txtSueldo");
-    if (cedula.length == 10) {                              // longitud de la cedula
-        let mayuscula;
-        mostrarTexto("lblErrorCedula", "");
-        mayuscula = nombre.charCodeAt();
-        if (mayuscula >= 65 && mayuscula <= 90 && nombre.length >= 3) { // nombre letras mayusculas
-            mostrarTexto("lblErrorNombre", "");
-            let mayusculaApellido;
-            mayusculaApellido = apellido.charCodeAt()
-            if (mayusculaApellido >= 65 && mayusculaApellido <= 90) {// apellido letras mayusculas
-                mostrarTexto("lblErrorApellido", "");
-                if (sueldo >= 400 && sueldo <= 5000) {               // sueldo 
-                    mostrarTexto("lblErrorSueldo", "");
-                    if (esNUevo == true) {
-                        let nuevo = {}
-                        nuevo.cedula = cedula;
-                        nuevo.nombre = nombre;
-                        nuevo.apellido = apellido;
-                        nuevo.sueldo = sueldo;
-                        let agregar = agregarEmpleado(nuevo);
-                        if (agregar == true) {
-                            mostrarEmpleado();
-                            alert("EMPLEADO SE GUARDO CORRECTAMENTE");
-                            habili();
-                        }
-
-
-                    }
-
-                } else {
-                    mostrarTexto("lblErrorSueldo", "Error debe ingresar digitos, sueldo entre 400 y 5000");
-                }
-
-            } else {
-                mostrarTexto("lblErrorApellido", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
-
-            }
-
-        } else {
-            mostrarTexto("lblErrorNombre", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
-
-        }
-
-    } else {
-        mostrarTexto("lblErrorCedula", "Error debe ingresar 10 digitos");
-
-    }
-
 }
 habili = function () {
     habilitarComponente("txtCedula");
@@ -137,4 +83,77 @@ habili = function () {
     habilitarComponente("txtApellido");
     habilitarComponente("txtSueldo");
     habilitarComponente("btnGuardar");
+}
+
+guardar = function(){
+    let cedula = recuperarTexto("txtCedula");
+    let nombre = recuperarTexto("txtNombre");
+    let apellido = recuperarTexto("txtApellido");
+    let sueldo = recuperarFloat("txtSueldo");
+//-------------validacion de la cedula------
+    cedulaValidacion = false // debe ser false
+    if(cedula.length != 10){
+        cedulaValidacion = true;
+    }
+//----------validacion del el nombre ---------
+    let mayusculaValidacion1 = 0;                 // debe ser true nombre
+    for(let i = 0;i<nombre.length;i++){
+        let letra = nombre.charCodeAt(i)
+        if(letra>= 65 && letra <= 90){
+            mayusculaValidacion1 ++;
+        }
+    }
+//------validacion del apeellido----------
+    let mayusculaValidacion2 = 0;                 // debe ser true apellido
+    for(let i = 0;i<apellido.length;i++){
+        let letra2 = apellido.charCodeAt(i)
+        if(letra2>= 65 && letra2 <= 90){
+            mayusculaValidacion2++;
+        }
+    }
+//---------validacion del sueldo----------
+    let sueldoValidacion = false             // debe ser true sueldo 
+    if(sueldo >= 400 && sueldo <= 5000){
+        sueldoValidacion = true;
+    }
+// --------------Si hubo un erro ---------------------------------
+    if(cedulaValidacion == true){
+        mostrarTexto("lblErrorCedula", "Error debe ingresar 10 digitos");
+    }else{
+        mostrarTexto("lblErrorCedula", "");
+    }
+    if(mayusculaValidacion1 != nombre.length || mayusculaValidacion1 == 0 || nombre.length<3){
+        mostrarTexto("lblErrorNombre", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
+    }else{
+        mostrarTexto("lblErrorNombre", "");
+        
+    }
+    if(mayusculaValidacion2 != apellido.length || mayusculaValidacion2 == 0 || apellido.length<3){
+        mostrarTexto("lblErrorApellido", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
+    }else{
+        mostrarTexto("lblErrorApellido", "");
+    }
+    if(sueldoValidacion == false){
+        mostrarTexto("lblErrorSueldo", "Error debe ingresar digitos, sueldo entre 400 y 5000");
+    }else{
+        mostrarTexto("lblErrorSueldo", "");
+    }
+// ------------ si todo esta bien continuar cn el codigo     
+    if(cedulaValidacion == false && mayusculaValidacion1 == nombre.length && mayusculaValidacion2 == apellido.length && sueldoValidacion == true ){
+        if (esNUevo == true) {
+            let nuevo = {}
+            nuevo.cedula = cedula;
+            nuevo.nombre = nombre;
+            nuevo.apellido = apellido;
+            nuevo.sueldo = sueldo;
+            let agregar = agregarEmpleado(nuevo);
+            if (agregar == true) {
+                mostrarEmpleado();
+                alert("EMPLEADO SE GUARDO CORRECTAMENTE");
+                habili();
+            }
+        }
+    }
+   
+
 }
