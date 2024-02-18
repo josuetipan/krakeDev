@@ -139,7 +139,7 @@ guardar = function(){
         mostrarTexto("lblErrorSueldo", "");
     }
 // ------------ si todo esta bien continuar cn el codigo     
-    if(cedulaValidacion == false && mayusculaValidacion1 == nombre.length && mayusculaValidacion2 == apellido.length && sueldoValidacion == true ){
+    if(cedulaValidacion == false && mayusculaValidacion1 == nombre.length && nombre.length>=3 && mayusculaValidacion2 == apellido.length && apellido.length>=3 && sueldoValidacion == true ){
         if (esNUevo == true) {
             let nuevo = {}
             nuevo.cedula = cedula;
