@@ -103,9 +103,13 @@ guardar = function(){
                         nuevo.sueldo = sueldo;
                         let agregar = agregarEmpleado(nuevo);
                         if(agregar == true){
-
                             mostrarEmpleado();
                             alert("EMPLEADO SE GUARDO CORRECTAMENTE");
+                            habilitarComponente("txtCedula");
+                            habilitarComponente("txtNombre");
+                            habilitarComponente("txtApellido");
+                            habilitarComponente("txtSueldo");
+                            habilitarComponente("btnGuardar");
                         }
                         
                         
