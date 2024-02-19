@@ -171,9 +171,6 @@ guardar = function () {
         empleadoModificado.sueldo = sueldo;
         alert("EMPLEADO MODIFICADO EXITOSAMENTE");
         mostrarEmpleado();
-
-
-
         deshabili();
     }
 
@@ -202,4 +199,16 @@ limpiar = function () {
     mostrarTextoEnCaja("txtNombre", "");
     mostrarTextoEnCaja("txtApellido", "");
     mostrarTextoEnCaja("txtSueldo", "");
+}
+buscarPorRol = function(){
+    let cedulaEmple = recuperarTexto("txtBusquedaCedulaRol");
+    let encontro = buscarEmpleado(cedulaEmple);
+    if(encontro != null){
+        mostrarTexto("infoCedula",encontro.cedula);
+        mostrarTexto("infoNombre",encontro.nombre+encontro.apellido);
+        mostrarTexto("infoSueldo",encontro.sueldo);
+        
+    }else{
+        alert("No existe");
+    }
 }
