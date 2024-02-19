@@ -84,76 +84,122 @@ habili = function () {
     habilitarComponente("txtSueldo");
     habilitarComponente("btnGuardar");
 }
+deshabili = function () {
+    deshabilitarComponente("txtCedula");
+    deshabilitarComponente("txtNombre");
+    deshabilitarComponente("txtApellido");
+    deshabilitarComponente("txtSueldo");
+    deshabilitarComponente("btnGuardar");
+}
 
-guardar = function(){
+guardar = function () {
     let cedula = recuperarTexto("txtCedula");
     let nombre = recuperarTexto("txtNombre");
     let apellido = recuperarTexto("txtApellido");
     let sueldo = recuperarFloat("txtSueldo");
-//-------------validacion de la cedula------
+    //-------------validacion de la cedula------
     cedulaValidacion = false // debe ser false
-    if(cedula.length != 10){
+    if (cedula.length != 10) {
         cedulaValidacion = true;
     }
-//----------validacion del el nombre ---------
+    //----------validacion del el nombre ---------
     let mayusculaValidacion1 = 0;                 // debe ser true nombre
-    for(let i = 0;i<nombre.length;i++){
+    for (let i = 0; i < nombre.length; i++) {
         let letra = nombre.charCodeAt(i)
-        if(letra>= 65 && letra <= 90){
-            mayusculaValidacion1 ++;
+        if (letra >= 65 && letra <= 90) {
+            mayusculaValidacion1++;
         }
     }
-//------validacion del apeellido----------
+    //------validacion del apeellido----------
     let mayusculaValidacion2 = 0;                 // debe ser true apellido
-    for(let i = 0;i<apellido.length;i++){
+    for (let i = 0; i < apellido.length; i++) {
         let letra2 = apellido.charCodeAt(i)
-        if(letra2>= 65 && letra2 <= 90){
+        if (letra2 >= 65 && letra2 <= 90) {
             mayusculaValidacion2++;
         }
     }
-//---------validacion del sueldo----------
+    //---------validacion del sueldo----------
     let sueldoValidacion = false             // debe ser true sueldo 
-    if(sueldo >= 400 && sueldo <= 5000){
+    if (sueldo >= 400 && sueldo <= 5000) {
         sueldoValidacion = true;
     }
-// --------------Si hubo un erro ---------------------------------
-    if(cedulaValidacion == true){
+    // --------------Si hubo un erro ---------------------------------
+    if (cedulaValidacion == true) {
         mostrarTexto("lblErrorCedula", "Error debe ingresar 10 digitos");
-    }else{
+    } else {
         mostrarTexto("lblErrorCedula", "");
     }
-    if(mayusculaValidacion1 != nombre.length || mayusculaValidacion1 == 0 || nombre.length<3){
+    if (mayusculaValidacion1 != nombre.length || mayusculaValidacion1 == 0 || nombre.length < 3) {
         mostrarTexto("lblErrorNombre", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
-    }else{
+    } else {
         mostrarTexto("lblErrorNombre", "");
-        
+
     }
-    if(mayusculaValidacion2 != apellido.length || mayusculaValidacion2 == 0 || apellido.length<3){
+    if (mayusculaValidacion2 != apellido.length || mayusculaValidacion2 == 0 || apellido.length < 3) {
         mostrarTexto("lblErrorApellido", "Error debe ingresar letras mayuscula y minimo 3 caracteres");
-    }else{
+    } else {
         mostrarTexto("lblErrorApellido", "");
     }
-    if(sueldoValidacion == false){
+    if (sueldoValidacion == false) {
         mostrarTexto("lblErrorSueldo", "Error debe ingresar digitos, sueldo entre 400 y 5000");
-    }else{
+    } else {
         mostrarTexto("lblErrorSueldo", "");
     }
-// ------------ si todo esta bien continuar cn el codigo     
-    if(cedulaValidacion == false && mayusculaValidacion1 == nombre.length && nombre.length>=3 && mayusculaValidacion2 == apellido.length && apellido.length>=3 && sueldoValidacion == true ){
-        if (esNUevo == true) {
-            let nuevo = {}
-            nuevo.cedula = cedula;
-            nuevo.nombre = nombre;
-            nuevo.apellido = apellido;
-            nuevo.sueldo = sueldo;
-            let agregar = agregarEmpleado(nuevo);
-            if (agregar == true) {
-                mostrarEmpleado();
-                alert("EMPLEADO SE GUARDO CORRECTAMENTE");
-                habili();
-            }
-        }
-    }
-   
+    // ------------ si todo esta bien continuar cn el codigo     
+    if (esNUevo == true && cedulaValidacion == false && mayusculaValidacion1 == nombre.length && nombre.length >= 3 && mayusculaValidacion2 == apellido.length && apellido.length >= 3 && sueldoValidacion == true) {
+        let nuevo = {}
+        nuevo.cedula = cedula;
+        nuevo.nombre = nombre;
+        nuevo.apellido = apellido;
+        nuevo.sueldo = sueldo;
+        let agregar = agregarEmpleado(nuevo);
+        if (agregar == true) {
+            mostrarEmpleado();
+            alert("EMPLEADO SE GUARDO CORRECTAMENTE");
+            habili();
+            esNUevo = false
 
+        }
+
+
+
+    } else if (esNUevo == false && cedulaValidacion == false && mayusculaValidacion1 == nombre.length && nombre.length >= 3 && mayusculaValidacion2 == apellido.length && apellido.length >= 3 && sueldoValidacion == true) {
+
+        let empleadoModificado = buscarEmpleado(cedula);
+        empleadoModificado.nombre = nombre;
+        empleadoModificado.apellido = apellido;
+        empleadoModificado.sueldo = sueldo;
+        alert("EMPLEADO MODIFICADO EXITOSAMENTE");
+        mostrarEmpleado();
+
+
+
+        deshabili();
+    }
+
+
+
+}
+ejecutarBusqueda = function () {
+    let busqueda = recuperarTexto("txtBusquedaCedula");
+    let busquedaEncontrada = buscarEmpleado(busqueda);
+    if (busquedaEncontrada == null) {
+        alert("EMPLEADO NO EXISTE");
+    } else {
+        mostrarTextoEnCaja("txtCedula", busquedaEncontrada.cedula);
+        mostrarTextoEnCaja("txtNombre", busquedaEncontrada.nombre);
+        mostrarTextoEnCaja("txtApellido", busquedaEncontrada.apellido);
+        mostrarTextoEnCaja("txtSueldo", busquedaEncontrada.sueldo);
+        habilitarComponente("txtNombre");
+        habilitarComponente("txtApellido");
+        habilitarComponente("txtSueldo");
+        deshabilitarComponente("txtCedula");
+    }
+
+}
+limpiar = function () {
+    mostrarTextoEnCaja("txtCedula", "");
+    mostrarTextoEnCaja("txtNombre", "");
+    mostrarTextoEnCaja("txtApellido", "");
+    mostrarTextoEnCaja("txtSueldo", "");
 }
